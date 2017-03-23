@@ -11,7 +11,11 @@ return [
     'basePath' => dirname(__DIR__),
     'controllerNamespace' => 'backend\controllers',
     'bootstrap' => ['log'],
-    'modules' => [],
+    'modules' => [
+      'user' => [
+          'as backend' => 'dektrium\user\filters\BackendFilter',
+      ],
+   ],
     'homeurl' => '/weblanjut/yii/seminar/administrator',
     'components' => [
         'request' => [
@@ -19,12 +23,26 @@ return [
             'csrfParam' => '_csrf-backend',
         ],
         'user' => [
+            'identityCookie' => [
+                'name'     => '_backendIdentity',
+                'path'     => '/admin',
+                'httpOnly' => true,
+            ],
+        ],
+        /*
+        'user' => [
             'identityClass' => 'common\models\User',
             'enableAutoLogin' => true,
             'identityCookie' => ['name' => '_identity-backend', 'httpOnly' => true],
         ],
+        */
         'session' => [
-            'name' => 'advanced-backend',
+            /* 'name' => 'advanced-backend', */
+            'name' => 'BACKENDSESSID',
+            'cookieParams' => [
+                'httpOnly' => true,
+                'path'     => '/admin',
+            ],
         ],
         'log' => [
             'traceLevel' => YII_DEBUG ? 3 : 0,
