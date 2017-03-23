@@ -32,7 +32,7 @@ return [
         'user' => [
             'identityCookie' => [
                 'name'     => '_frontendIdentity',
-                'path'     => '/',
+                'path'     => '/weblanjut/yii/seminar',
                 'httpOnly' => true,
             ],
         ],
